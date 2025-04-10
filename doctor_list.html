@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor List - Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Styles for Doctor List Page */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .doctor-list {
+            margin-top: 20px;
+        }
+
+        .doctor-list h2 {
+            color: #28a745;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .doctor-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doctor-list li {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+        }
+
+        .doctor-list li .details {
+            flex: 1;
+        }
+
+        .doctor-list li .details strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .doctor-list li .details span {
+            display: block;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .doctor-list li button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .doctor-list li button:hover {
+            background-color: #218838;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .footer-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-social {
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #28a745;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="Health Matrix Logo"></a>
+    </div>
+
+    <!-- Doctor List Page Content -->
+    <div class="container">
+        <h1>Doctor List</h1>
+
+        <!-- Doctor List -->
+        <div class="doctor-list">
+            <h2>Fever</h2>
+            <ul>
+                <li>
+                    <div class="details">
+                        <strong>Dr. John Doe</strong>
+                        <span>Specialist: General Physician</span>
+                        <span>Fees: $50</span>
+                        <span>Medical: City Hospital</span>
+                    </div>
+                    <button onclick="location.href='appointment.html'">Book Now</button>
+                </li>
+                <li>
+                    <div class="details">
+                        <strong>Dr. Jane Smith</strong>
+                        <span>Specialist: Internal Medicine</span>
+                        <span>Fees: $60</span>
+                        <span>Medical: Green Valley Clinic</span>
+                    </div>
+                    <button onclick="location.href='appointment.html'">Book Now</button>
+                </li>
+            </ul>
+
+            <h2>Diabetes</h2>
+            <ul>
+                <li>
+                    <div class="details">
+                        <strong>Dr. Alice Brown</strong>
+                        <span>Specialist: Endocrinologist</span>
+                        <span>Fees: $80</span>
+                        <span>Medical: Diabetes Care Center</span>
+                    </div>
+                    <button onclick="location.href='appointment.html'">Book Now</button>
+                </li>
+                <li>
+                    <div class="details">
+                        <strong>Dr. Bob Johnson</strong>
+                        <span>Specialist: Diabetologist</span>
+                        <span>Fees: $75</span>
+                        <span>Medical: Health Plus Clinic</span>
+                    </div>
+                    <button onclick="location.href='appointment.html'">Book Now</button>
+                </li>
+            </ul>
+
+            <h2>Heart Disease</h2>
+            <ul>
+                <li>
+                    <div class="details">
+                        <strong>Dr. Emily Davis</strong>
+                        <span>Specialist: Cardiologist</span>
+                        <span>Fees: $120</span>
+                        <span>Medical: Heart Care Hospital</span>
+                    </div>
+                    <button onclick="location.href='appointment.html'">Book Now</button>
+                </li>
+                <li>
+                    <div class="details">
+                        <strong>Dr. Michael Wilson</strong>
+                        <span>Specialist: Cardiothoracic Surgeon</span>
+                        <span>Fees: $150</span>
+                        <span>Medical: National Heart Center</span>
+                    </div>
+                    <button onclick="location.href='appointment.html'">Book Now</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-columns">
+                <!-- About Us -->
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                </div>
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Health_Plan_Page.html">Health Plans</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="terms-of-services.html">Terms of Services</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
+                        <li><a href="for-doctors.html">For Doctors</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Us -->
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>📞 09677865599</p>
+                    <p>📧 support@healthmatrix.com.bd</p>
+                    <!-- Social Media Icons -->
+                    <div class="footer-social">
+                        <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

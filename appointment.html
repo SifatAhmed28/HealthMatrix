@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Styles for Appointment Page */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .form-group .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group .radio-group label {
+            margin-right: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .doctor-list {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .doctor-list h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .doctor-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doctor-list li {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .doctor-list li button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .doctor-list li button:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        // Function to show doctors based on selected disease
+        function showDoctors() {
+            const disease = document.getElementById("disease").value;
+            const doctorList = document.getElementById("doctor-list");
+
+            // Simulated doctor data based on disease
+            const doctors = {
+                "fever": [
+                    { name: "Dr. John Doe", specialty: "General Physician" },
+                    { name: "Dr. Jane Smith", specialty: "Internal Medicine" }
+                ],
+                "diabetes": [
+                    { name: "Dr. Alice Brown", specialty: "Endocrinologist" },
+                    { name: "Dr. Bob Johnson", specialty: "Diabetologist" }
+                ],
+                "heart-disease": [
+                    { name: "Dr. Emily Davis", specialty: "Cardiologist" },
+                    { name: "Dr. Michael Wilson", specialty: "Cardiothoracic Surgeon" }
+                ]
+            };
+
+            if (doctors[disease]) {
+                doctorList.innerHTML = doctors[disease]
+                    .map(
+                        (doctor) => `
+                        <li>
+                            <div>
+                                <strong>${doctor.name}</strong><br>
+                                <span>${doctor.specialty}</span>
+                            </div>
+                            <button onclick="confirmAppointment('${doctor.name}')">Confirm</button>
+                        </li>
+                    `
+                    )
+                    .join("");
+                doctorList.style.display = "block";
+            } else {
+                doctorList.innerHTML = "<li>No doctors available for this disease.</li>";
+                doctorList.style.display = "block";
+            }
+        }
+
+        // Function to confirm appointment
+        function confirmAppointment(doctorName) {
+            alert(`Appointment confirmed with ${doctorName}. Thank you!`);
+            // Redirect to homepage or confirmation page
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Book an Appointment</h1>
+        <form id="appointment-form">
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                </div>
+            </div>
+
+            <!-- Disease -->
+            <div class="form-group">
+                <label for="disease">Select Disease</label>
+                <select id="disease" name="disease" required onchange="showDoctors()">
+                    <option value="" disabled selected>Select a disease</option>
+                    <option value="fever">Fever</option>
+                    <option value="diabetes">Diabetes</option>
+                    <option value="heart-disease">Heart Disease</option>
+                </select>
+            </div>
+
+            <!-- Doctor List -->
+            <div id="doctor-list" class="doctor-list">
+                <h3>Available Doctors</h3>
+                <ul></ul>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="btn" onclick="showDoctors()">Find Doctors</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Matrix - Download Prescription</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header-top {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .header-contact span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .header-actions .btn-login,
+        .header-actions .btn-signup {
+            padding: 5px 15px;
+            margin-left: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .header-actions .btn-signup {
+            background-color: #28a745;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #007bff;
+            padding: 10px 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 10px;
+            border: 3px;
+            border-radius: 5px 0 0 5px;
+            width: 95%;
+        }
+
+        .search-box button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .search-box button i {
+            font-size: 16px;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 20px 0;
+        }
+
+        main h1 {
+            margin-bottom: 20px;
+        }
+
+        main p {
+            margin-bottom: 20px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .footer-top .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 10px;
+            font-size: 14px;
+            background-color: #222;
+            padding: 10px 0;
+        }
+
+        /* Sticky Header */
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Prescription List Styles */
+        .prescription-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .prescription-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .prescription-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .prescription-card h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .prescription-card p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .prescription-card button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .prescription-card button:hover {
+            background-color: #218838;
+        }
+
+        /* Preview Prescription Styles */
+        .preview-prescription {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .preview-prescription h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .preview-prescription p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .prescription-details {
+            display: flex;
+            gap: 20px;
+        }
+
+        .prescription-content {
+            flex: 3;
+        }
+
+        .patient-suggestions {
+            flex: 1;
+            border-left: 2px solid #007bff;
+            padding-left: 20px;
+        }
+
+        .patient-suggestions h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .patient-suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .patient-suggestions li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .logo-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            font-size: 100px;
+            color: #ccc;
+            pointer-events: none;
+        }
+
+        /* Download Button Theme Color */
+        #downloadButton {
+            background-color: #007bff; /* Theme color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: none; /* Hidden by default */
+        }
+
+        #downloadButton:hover {
+            background-color: #0056b3; /* Darker shade for hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-columns {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+
+            .prescription-list {
+                grid-template-columns: 1fr;
+            }
+
+            .prescription-details {
+                flex-direction: column;
+            }
+
+            .patient-suggestions {
+                border-left: none;
+                border-top: 2px solid #007bff;
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="/"><img src="logo.png" alt="Logo"></a>
+                </div>
+                <div class="header-contact">
+                    <span>Call Us: +880 1234 567890</span>
+                </div>
+                <div class="header-actions">
+                    <a href="/login" class="btn-login">Login</a>
+                    <a href="/signup" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/doctors">Doctors</a></li>
+                    <li><a href="/hospitals">Hospitals</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Download Prescription</h1>
+
+            <!-- Prescription List -->
+            <div class="prescription-list" id="prescriptionList"></div>
+
+            <!-- Preview Prescription -->
+            <div class="preview-prescription">
+                <!-- Watermark -->
+                <div class="logo-watermark">Health Matrix</div>
+
+                <!-- Prescription Details -->
+                <div class="prescription-details">
+                    <div class="prescription-content">
+                        <h2>Prescription Details</h2>
+                        <p><strong>Doctor:</strong> <span id="previewDoctor"></span></p>
+                        <p><strong>Date:</strong> <span id="previewDate"></span></p>
+                        <p><strong>Time:</strong> <span id="previewTime"></span></p>
+                        <p><strong>Medical Name:</strong> <span id="previewMedicalName"></span></p>
+                        <h3>Medicine List:</h3>
+                        <ul id="previewMedicineList">
+                            <!-- Medicine list will be dynamically populated -->
+                        </ul>
+                    </div>
+
+                    <!-- Patient Suggestions -->
+                    <div class="patient-suggestions">
+                        <h3>Suggestions for Patient</h3>
+                        <ul>
+                            <li>Take medicines on time.</li>
+                            <li>Avoid fatty foods.</li>
+                            <li>Drink plenty of water.</li>
+                            <li>Get adequate rest.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Dynamic Download Button -->
+                <button id="downloadButton">Download PDF</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/health-plans">Health Plans</a></li>
+                            <li><a href="/about-us">About us</a></li>
+                            <li><a href="/terms-of-services">Terms of Services</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            <li><a href="/home-diagnostics">Home Diagnostics</a></li>
+                            <li><a href="/for-doctors">For Doctors</a></li>
+                            <li><a href="/contact-us">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock Data
+        const prescriptions = [
+            { id: 1, doctor: "Dr. Remedios Navarro", date: "2024-02-24", description: "Heart medication prescription." },
+            { id: 2, doctor: "Dr. John Smith", date: "2024-02-20", description: "Diabetes medication prescription." },
+            { id: 3, doctor: "Dr. Emily Davis", date: "2024-02-18", description: "Blood pressure medication prescription." },
+        ];
+
+        // DOM Elements
+        const prescriptionList = document.getElementById("prescriptionList");
+        const previewDoctor = document.getElementById("previewDoctor");
+        const previewDate = document.getElementById("previewDate");
+        const previewTime = document.getElementById("previewTime");
+        const previewMedicalName = document.getElementById("previewMedicalName");
+        const previewMedicineList = document.getElementById("previewMedicineList");
+        const downloadButton = document.getElementById("downloadButton");
+
+        // Render Prescriptions
+        function renderPrescriptions() {
+            prescriptionList.innerHTML = "";
+            prescriptions.forEach(prescription => {
+                const card = document.createElement("div");
+                card.className = "prescription-card";
+                card.innerHTML = `
+                    <h3>${prescription.doctor}</h3>
+                    <p><strong>Date:</strong> ${prescription.date}</p>
+                    <p><strong>Description:</strong> ${prescription.description}</p>
+                    <button onclick="previewPrescription('${prescription.doctor}', '${prescription.date}')">Preview & Download</button>
+                `;
+                prescriptionList.appendChild(card);
+            });
+        }
+
+        // Preview Prescription
+        function previewPrescription(doctor, date) {
+            previewDoctor.textContent = doctor;
+            previewDate.textContent = date;
+            previewTime.textContent = new Date().toLocaleTimeString();
+            previewMedicalName.textContent = "Heart Medication";
+
+            // Populate medicine list
+            previewMedicineList.innerHTML = `
+                <li>Medicine A - 1 tablet after breakfast</li>
+                <li>Medicine B - 1 tablet after dinner</li>
+                <li>Medicine C - 1 tablet before sleep</li>
+            `;
+
+            // Enable download button
+            downloadButton.style.display = "block";
+            downloadButton.onclick = () => downloadPrescription(doctor, date);
+        }
+
+        // Download Prescription as PDF
+        function downloadPrescription(doctor, date) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add watermark
+            doc.setFontSize(60);
+            doc.setTextColor(200, 200, 200);
+            doc.text("Health Matrix", 40, 120, { angle: 45 });
+
+            // Add prescription details
+            doc.setFontSize(18);
+            doc.setTextColor(0, 0, 0);
+            doc.text("Prescription Details", 10, 20);
+            doc.setFontSize(12);
+            doc.text(`Doctor: ${doctor}`, 10, 30);
+            doc.text(`Date: ${date}`, 10, 40);
+            doc.text(`Time: ${new Date().toLocaleTimeString()}`, 10, 50);
+            doc.text(`Medical Name: Heart Medication`, 10, 60);
+
+            // Add medicine list
+            doc.text("Medicine List:", 10, 70);
+            doc.text("- Medicine A - 1 tablet after breakfast", 10, 80);
+            doc.text("- Medicine B - 1 tablet after dinner", 10, 90);
+            doc.text("- Medicine C - 1 tablet before sleep", 10, 100);
+
+            // Add patient suggestions
+            doc.text("Suggestions for Patient:", 10, 120);
+            doc.text("- Take medicines on time.", 10, 130);
+            doc.text("- Avoid fatty foods.", 10, 140);
+            doc.text("- Drink plenty of water.", 10, 150);
+            doc.text("- Get adequate rest.", 10, 160);
+
+            // Save PDF
+            doc.save(`Prescription_${date}.pdf`);
+        }
+
+        // Initial Load
+        renderPrescriptions();
+    </script>
+    <!-- jsPDF Library (for PDF generation) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

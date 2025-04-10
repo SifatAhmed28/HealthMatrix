@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Styles for Index Page */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.8)), url('health-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out; /* Fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px); /* Start slightly above */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* End at original position */
+            }
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            padding: 10px 20px;
+            background-color: #28a745; /* Green color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .cta-btn:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        /* Services Section */
+        #services {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        #services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #28a745; /* Green color */
+        }
+
+        .service-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .service {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .service:hover {
+            transform: scale(1.05); /* Pop-up effect on hover */
+        }
+
+        .service h3 {
+            font-size: 1.5rem;
+            color: #28a745; /* Green color */
+        }
+
+        .service p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #28a745; /* Green color */
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .testimonial {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.05); /* Pop-up effect on hover */
+        }
+
+        .testimonial p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Call-to-Action Section */
+        #cta {
+            background-color: #28a745; /* Green color */
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Social Icons */
+        .footer-social {
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #28a745; /* Green color on hover */
+        }
+
+        /* Updated Search Bar */
+        .search-box {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .search-box input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-box button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="logo.png" alt="Health Matrix Logo"></a>
+                </div>
+                <div class="header-contact">
+                    <span>Call Us: +880 1234 567890</span>
+                </div>
+                <div class="header-actions">
+                    <a href="login.html" class="btn-login">Login</a>
+                    <a href="doctor-login.html" class="btn-login">Doctor Login</a>
+                    <a href="signup.html" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="for-doctors.html">Doctors</a></li>
+                    <li><a href="hospitals.html">Hospitals</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctor_list.html">Doctor List</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1>Welcome to Health Matrix</h1>
+            <p>Your health, our priority. Get expert medical help today!</p>
+            <a href="appointment.html" class="cta-btn">Get an Appointment</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-container">
+                <div class="service">
+                    <h3>Online Consultations</h3>
+                    <p>Get medical advice from certified doctors anytime, anywhere.</p>
+                </div>
+                <div class="service">
+                    <h3>Health Plans</h3>
+                    <p>Choose a personalized health plan to meet your needs.</p>
+                </div>
+                <div class="service">
+                    <h3>Emergency Assistance</h3>
+                    <p>Get help in emergency situations with just a click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>What Our Patients Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p>"Health Matrix has been a lifesaver! The doctors are so helpful and professional."</p>
+                    <p>- John Doe</p>
+                </div>
+                <div class="testimonial">
+                    <p>"I love the health plans they offer. So easy to get started!"</p>
+                    <p>- Sarah Smith</p>
+                </div>
+                <div class="testimonial">
+                    <p>"The emergency assistance is quick and reliable. Highly recommended!"</p>
+                    <p>- Jane Doe</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section id="cta">
+        <div class="container">
+            <h2>Ready to take charge of your health?</h2>
+            <a href="appointment.html" class="cta-btn">Get an Appointment</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <!-- About Us -->
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="Health_Plan_Page.html">Health Plans</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="terms-of-services.html">Terms of Services</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
+                            <li><a href="for-doctors.html">For Doctors</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <!-- Contact Us -->
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                        <!-- Social Media Icons -->
+                        <div class="footer-social">
+                            <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

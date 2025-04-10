@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #28a745; /* Green color */
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #28a745;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Privacy Content Styles */
+        .privacy-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .privacy-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .privacy-content p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .privacy-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .privacy-content ul li {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .privacy-content ul li i {
+            margin-right: 10px;
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+
+        .privacy-content a {
+            color: #28a745;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-content a:hover {
+            color: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .privacy-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="logo.png" alt="Health Matrix Logo"></a>
+                </div>
+                <div class="header-actions">
+                    <a href="login.html" class="btn-login">Patient Login</a>
+                    <a href="doctor-login.html" class="btn-login">Doctor Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <div class="privacy-content">
+                <p>Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information:</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i>We collect information such as your name, email, and health data to provide personalized services.</li>
+                    <li><i class="fas fa-check-circle"></i>Your data is stored securely and will not be shared with third parties without your consent.</li>
+                    <li><i class="fas fa-check-circle"></i>We use cookies to improve your experience on our platform.</li>
+                    <li><i class="fas fa-check-circle"></i>You have the right to access, update, or delete your information at any time.</li>
+                </ul>
+                <p>For more details, please read our full <a href="terms-of-services.html">Terms of Services</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <!-- About Us -->
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="health-plans.html">Health Plans</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="terms-of-services.html">Terms of Services</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
+                            <li><a href="doctors-register.html">For Doctors</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <!-- Contact Us -->
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                        <!-- Social Media Icons -->
+                        <div class="footer-social">
+                            <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Matrix</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header-top {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .header-contact span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .header-actions .btn-login,
+        .header-actions .btn-signup {
+            padding: 5px 15px;
+            margin-left: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .header-actions .btn-signup {
+            background-color: #28a745;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #007bff;
+            padding: 10px 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .search-box {
+            display: flex;
+            align-items:center;
+        }
+
+        .search-box input {
+            padding: 10px; /* Increased padding for larger search bar */
+            border: 3px;
+            border-radius: 5px 0 0 5px;
+            width: 95%; /* Increased width of the search bar */
+        }
+
+        .search-box button {
+            padding: 10px 15px; /* Increased padding for larger button */
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .search-box button i {
+            font-size: 16px; /* Increased icon size */
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 20px 0;
+        }
+
+        main h1 {
+            margin-bottom: 20px;
+        }
+
+        main p {
+            margin-bottom: 20px;
+        }
+
+        /* Health Form Styles */
+        .health-form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .health-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .health-form input,
+        .health-form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .health-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .health-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e9f5ff;
+            border-radius: 8px;
+        }
+
+        .results h2 {
+            margin-bottom: 10px;
+        }
+
+        .results p {
+            margin-bottom: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .footer-top .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-columns {
+            display: flex; /* Arrange columns side by side */
+            justify-content: space-between; /* Add space between columns */
+            gap: 20px; /* Add gap between columns */
+        }
+
+        .footer-section {
+            flex: 1; /* Each column takes equal width */
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 10px;
+            font-size: 14px;
+            background-color: #222; /* Darker background for copyright */
+            padding: 10px 0;
+        }
+
+        /* Sticky Header */
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .footer-columns {
+                flex-direction: column; /* Stack columns vertically */
+                gap: 30px; /* Add more gap between stacked columns */
+            }
+
+            .search-box input {
+                width: 200px; /* Adjust search bar width for smaller screens */
+            }
+           
+        }
+    </style>
+    <!-- Font Awesome for search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="/"><img src="logo.png" alt="Logo"></a>
+                </div>
+                <div class="header-contact">
+                    <span>Call Us: +880 1234 567890</span>
+                </div>
+                <div class="header-actions">
+                    <a href="/login" class="btn-login">Login</a>
+                    <a href="/signup" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/doctors">Doctors</a></li>
+                    <li><a href="/hospitals">Hospitals</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+       
+   
+    <main>
+        <div style="display: flex; justify-content: center;">
+            <img src="healthplan.png" alt="Health Plan Banner" style="width: 70%;">
+        </div>
+        <div class="health-form">
+           
+            <h1>Health Plan Calculator</h1>
+            <form id="healthForm">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+
+                <label for="height">Height (meters):</label>
+                <input type="number" id="height" name="height" step="0.01" required>
+
+                <button type="submit">Calculate</button>
+            </form>
+            <div class="results" id="results" style="display: none;">
+                <h2>Your Health Plan</h2>
+                <p><strong>BMI:</strong> <span id="bmiResult"></span></p>
+                <p><strong>Health Plan:</strong> <span id="healthPlan"></span></p>
+                <p><strong>Suggestion:</strong> <span id="suggestion"></span></p>
+                <p><strong>Minimum Protein Intake:</strong> <span id="proteinIntake"></span></p>
+                <p><strong>Minimum Water Intake:</strong> <span id="waterIntake"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <!-- Three Columns -->
+                <div class="footer-columns">
+                    <!-- Column 1: About Us -->
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+    
+                    <!-- Column 2: Quick Links -->
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/health-plans">Health Plans</a></li>
+                            <li><a href="/about-us">About us</a></li>
+                            <li><a href="/terms-of-services">Terms of Services</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            <li><a href="/home-diagnostics">Home Diagnostics</a></li>
+                            <li><a href="/for-doctors">For Doctors</a></li>
+                            <li><a href="/contact-us">Contact us</a></li>
+                        </ul>
+                    </div>
+    
+                    <!-- Column 3: Contact Us -->
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header Script
+        window.onscroll = function() {stickyHeader()};
+
+        var header = document.querySelector("header");
+        var sticky = header.offsetTop;
+
+        function stickyHeader() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+
+        // Health Plan Calculator Script
+        document.getElementById('healthForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let age = parseInt(document.getElementById('age').value);
+            let gender = document.getElementById('gender').value;
+            let weight = parseFloat(document.getElementById('weight').value);
+            let height = parseFloat(document.getElementById('height').value);
+
+            if (isNaN(weight) || isNaN(height) || isNaN(age) || weight <= 0 || height <= 0 || age <= 0) {
+                alert("Please enter valid positive numbers for weight, height, and age.");
+                return;
+            }
+
+            let bmi = weight / (height * height);
+            let plan = "";
+            let suggestion = "";
+
+            if (bmi < 18.5) {
+                plan = "Underweight: Increase calorie intake with a balanced diet rich in proteins and healthy fats. Include strength training exercises.";
+                suggestion = "Consider consulting a nutritionist to help create a meal plan that supports healthy weight gain.";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                plan = "Normal weight: Maintain a balanced diet with regular physical activity such as cardio and strength exercises.";
+                suggestion = "Keep up the good work and focus on consistency in diet and exercise.";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                plan = "Overweight: Focus on a calorie deficit diet with high fiber and protein intake. Incorporate regular exercise like brisk walking or cycling.";
+                suggestion = "Try monitoring portion sizes and reducing sugary drinks for better weight management.";
+            } else {
+                plan = "Obese: Consult a healthcare provider for a personalized plan. Focus on a nutrient-rich, low-calorie diet and regular physical activity.";
+                suggestion = "Consider working with a healthcare professional to develop a sustainable weight loss strategy.";
+            }
+
+            if (age >= 50) {
+                plan += " Since you're above 50, include joint-friendly exercises like swimming and ensure adequate calcium intake.";
+                suggestion += " Regular health check-ups and a diet rich in calcium and vitamin D are essential for bone health.";
+            }
+
+            // Calculate minimum protein intake (0.8g per kg of body weight)
+            let proteinIntake = (weight * 0.8).toFixed(2);
+
+            // Calculate minimum water intake (35ml per kg of body weight)
+            let waterIntake = (weight * 35).toFixed(2);
+
+            // Display results
+            document.getElementById('bmiResult').textContent = bmi.toFixed(2);
+            document.getElementById('healthPlan').textContent = plan;
+            document.getElementById('suggestion').textContent = suggestion;
+            document.getElementById('proteinIntake').textContent = `${proteinIntake} grams per day`;
+            document.getElementById('waterIntake').textContent = `${waterIntake} ml per day`;
+            document.getElementById('results').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
