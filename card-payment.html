@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Payment - Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://source.unsplash.com/featured/80x80?medical+logo" alt="Health Matrix Logo" class="h-16">
+                    </a>
+                </div>
+                <div class="header-contact">
+                    <span>Call Us: +880 1234 567890</span>
+                </div>
+                <div class="header-actions">
+                    <a href="login.html" class="btn-login">Login</a>
+                    <a href="doctor-login.html" class="btn-login">Doctor Login</a>
+                    <a href="signup.html" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="for-doctors.html">Doctors</a></li>
+                    <li><a href="hospitals.html">Hospitals</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Card Payment</h1>
+                <p class="text-gray-600">Secure payment gateway for your health services</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300 border border-gray-100">
+                    <!-- Payment Amount Display -->
+                    <div class="text-center mb-8 p-6 bg-blue-50 rounded-lg border-2 border-blue-100">
+                        <p class="text-sm font-medium text-blue-600 mb-2">Total Amount</p>
+                        <h2 class="text-4xl font-bold text-blue-700 flex items-center justify-center gap-2">
+                            <span class="text-2xl" id="currency-symbol">$</span>
+                            <span id="payment-amount">149.99</span>
+                            <span class="text-sm font-normal text-blue-500 ml-2" id="currency-code">(USD)</span>
+                        </h2>
+                        <p class="text-xs text-blue-500 mt-2">Secure Payment via SSL</p>
+                    </div>
+
+                    <!-- Card Icons with Labels -->
+                    <div class="flex justify-center items-center gap-8 mb-10 p-6 border-b border-gray-100">
+                        <div class="text-center transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-cc-visa text-5xl text-blue-600"></i>
+                            <span class="block text-sm text-gray-600 mt-2 font-medium">Visa</span>
+                        </div>
+                        <div class="text-center transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-cc-mastercard text-5xl text-red-500"></i>
+                            <span class="block text-sm text-gray-600 mt-2 font-medium">Mastercard</span>
+                        </div>
+                        <div class="text-center transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-cc-amex text-5xl text-blue-400"></i>
+                            <span class="block text-sm text-gray-600 mt-2 font-medium">American Express</span>
+                        </div>
+                    </div>
+
+                    <form id="cardPaymentForm" class="space-y-6">
+                        <!-- Card Number Input with Icon -->
+                        <div class="relative">
+                            <label class="block text-gray-700 text-sm font-semibold mb-2" for="card-number">
+                                Card Number
+                            </label>
+                            <div class="relative">
+                                <input type="text" id="card-number" name="card-number" 
+                                    class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    placeholder="1234 5678 9012 3456" required maxlength="19">
+                                <i class="fas fa-credit-card absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- Cardholder Name -->
+                        <div>
+                            <label class="block text-gray-700 text-sm font-semibold mb-2" for="cardholder-name">
+                                Cardholder Name
+                            </label>
+                            <input type="text" id="cardholder-name" name="cardholder-name" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="John Doe" required>
+                        </div>
+
+                        <!-- Expiry Date and CVV -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                    Expiry Date
+                                </label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <select id="expiry-month" name="expiry-month" 
+                                        class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                        <option value="">Month</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                    <select id="expiry-year" name="expiry-year" 
+                                        class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        required>
+                                        <option value="">Year</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2" for="cvv">
+                                    CVV
+                                    <span class="ml-1 text-gray-400" title="3-digit security code on the back of your card">
+                                        <i class="fas fa-question-circle"></i>
+                                    </span>
+                                </label>
+                                <input type="text" id="cvv" name="cvv" 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+
+                        <!-- Email/Contact -->
+                        <div>
+                            <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">
+                                Email/Contact Number
+                            </label>
+                            <input type="text" id="email" name="email" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="example@email.com" required>
+                        </div>
+
+                        <!-- Hidden fields for payment details -->
+                        <input type="hidden" name="payment-currency" id="payment-currency" value="">
+                        <input type="hidden" name="payment-amount" id="payment-amount-hidden" value="">
+
+                        <!-- Submit Button -->
+                        <button type="submit" 
+                            class="w-full bg-green-500 text-white py-4 px-6 rounded-lg font-semibold hover:bg-green-600 transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-lock"></i>
+                            Proceed to Verification
+                        </button>
+                    </form>
+
+                    <!-- Security Badges -->
+                    <div class="mt-10 flex flex-col items-center space-y-4 pt-6 border-t border-gray-100 bg-gradient-to-b from-gray-50">
+                        <div class="flex items-center gap-3 text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm">
+                            <i class="fas fa-shield-alt text-green-500 text-2xl"></i>
+                            <span class="font-medium">Secured by SSL Encryption</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm">
+                            <i class="fas fa-lock text-green-500 text-2xl"></i>
+                            <span class="font-medium">Your payment information is secure</span>
+                        </div>
+                        <div class="flex items-center gap-3 mt-4">
+                            <img src="https://www.gstatic.com/devrel-devsite/prod/v2d7fc8e8d7a59b111c65dd3df5ed700e17eac54ea8eeb2c1a56b0d2d051b0554/developers/images/lockup-developers.svg" 
+                                 alt="Secure Payment" class="h-10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="health-plans.html">Health Plans</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="terms-of-services.html">Terms of Services</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
+                            <li><a href="for-doctors.html">For Doctors</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                        <div class="footer-social">
+                            <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get payment details from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails"));
+            
+            if (paymentDetails) {
+                // Set currency symbol based on currency
+                let currencySymbol = "$";
+                if (paymentDetails.currency === "BDT") {
+                    currencySymbol = "৳";
+                }
+                
+                // Update the payment display
+                document.getElementById("currency-symbol").textContent = currencySymbol;
+                document.getElementById("payment-amount").textContent = paymentDetails.amount;
+                document.getElementById("currency-code").textContent = `(${paymentDetails.currency})`;
+                
+                // Set hidden fields
+                document.getElementById("payment-currency").value = paymentDetails.currency;
+                document.getElementById("payment-amount-hidden").value = paymentDetails.amount;
+            } else {
+                // Default values if no payment details found
+                document.getElementById("currency-symbol").textContent = "$";
+                document.getElementById("payment-amount").textContent = "149.99";
+                document.getElementById("currency-code").textContent = "(USD)";
+            }
+
+            // Card number formatting
+            document.getElementById('card-number').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(.{4})/g, '$1 ').trim();
+                e.target.value = value;
+            });
+
+            // CVV validation
+            document.getElementById('cvv').addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 3);
+            });
+
+            // Form submission
+            document.getElementById("cardPaymentForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                const email = document.getElementById("email").value;
+                alert(`Verification code sent to ${email}`);
+                window.location.href = "verification.html";
+            });
+        });
+    </script>
+</body>
+</html>

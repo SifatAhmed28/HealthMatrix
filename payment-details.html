@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .payment-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .payment-details p {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Details</h1>
+        <div class="payment-details" id="paymentDetails">
+            <!-- Payment details will be dynamically added here -->
+        </div>
+        <button onclick="proceedToVerification()">Proceed to Verification</button>
+    </div>
+
+    <script>
+        // Retrieve payment details from localStorage
+        const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails"));
+        const paymentDetailsDiv = document.getElementById("paymentDetails");
+
+        if (paymentDetails) {
+            // Display payment details
+            let detailsHTML = `
+                <p><strong>Payment Amount:</strong> ${paymentDetails.amount}</p>
+                <p><strong>Payment Method:</strong> ${paymentDetails.method}</p>
+            `;
+
+            if (paymentDetails.method === "Credit/Debit Card") {
+                detailsHTML += `
+                    <p><strong>Cardholder Name:</strong> ${paymentDetails.cardholderName}</p>
+                    <p><strong>Card Number:</strong> ${paymentDetails.cardNumber}</p>
+                    <p><strong>Expiration Date:</strong> ${paymentDetails.expiryMonth}/${paymentDetails.expiryYear}</p>
+                    <p><strong>CVV:</strong> ${paymentDetails.cvv}</p>
+                    <p><strong>Billing Address:</strong> ${paymentDetails.billingAddress || "N/A"}</p>
+                `;
+            } else if (paymentDetails.method === "bKash") {
+                detailsHTML += `
+                    <p><strong>bKash Number:</strong> ${paymentDetails.bkashNumber}</p>
+                `;
+            }
+
+            paymentDetailsDiv.innerHTML = detailsHTML;
+        } else {
+            // No payment details found
+            paymentDetailsDiv.innerHTML = "<p>No payment details found. Please go back and try again.</p>";
+        }
+
+        // Function to proceed to verification
+        function proceedToVerification() {
+            window.location.href = "payment-verification.html";
+        }
+    </script>
+</body>
+</html>

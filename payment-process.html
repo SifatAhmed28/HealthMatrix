@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Process - Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Payment Process Specific Styles */
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-container h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .payment-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .payment-container input,
+        .payment-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .payment-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+        }
+
+        .currency-conversion {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .payment-container button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="logo.png" alt="Health Matrix Logo"></a>
+                </div>
+                <div class="header-contact">
+                    <span>Call Us: +880 1234 567890</span>
+                </div>
+                <div class="header-actions">
+                    <a href="login.html" class="btn-login">Login</a>
+                    <a href="doctor-login.html" class="btn-login">Doctor Login</a>
+                    <a href="signup.html" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="for-doctors.html">Doctors</a></li>
+                    <li><a href="hospitals.html">Hospitals</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Payment Process Section -->
+    <main class="main-access">
+        <div class="payment-container">
+            <h1>Payment Process</h1>
+            <form id="paymentForm">
+                <!-- Currency Selection -->
+                <label for="currency">Select Currency:</label>
+                <select id="currency" name="currency" required>
+                    <option value="USD">USD</option>
+                    <option value="BDT">BDT</option>
+                </select>
+
+                <!-- Payment Amount -->
+                <label for="amount">Payment Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter payment amount" required>
+
+                <!-- Currency Conversion -->
+                <div class="currency-conversion">
+                    <p id="conversionRate">1 USD = 110 BDT</p>
+                    <p id="convertedAmount"></p>
+                </div>
+
+                <!-- Payment Options -->
+                <div class="payment-options">
+                    <label>
+                        <input type="radio" name="payment" value="card" checked>
+                        Credit/Debit Card
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="bkash">
+                        bKash
+                    </label>
+                </div>
+
+                <button type="submit">Proceed to Payment</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="health-plans.html">Health Plans</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="terms-of-services.html">Terms of Services</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
+                            <li><a href="for-doctors.html">For Doctors</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                        <div class="footer-social">
+                            <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Currency conversion rate (1 USD = 110 BDT)
+        const conversionRate = 110;
+
+        // Update conversion rate and converted amount
+        const currencySelect = document.getElementById("currency");
+        const amountInput = document.getElementById("amount");
+        const conversionRateText = document.getElementById("conversionRate");
+        const convertedAmountText = document.getElementById("convertedAmount");
+
+        function updateConversion() {
+            const currency = currencySelect.value;
+            const amount = parseFloat(amountInput.value) || 0;
+
+            if (currency === "USD") {
+                conversionRateText.textContent = "1 USD = 110 BDT";
+                convertedAmountText.textContent = `Converted Amount: ${(amount * conversionRate).toFixed(2)} BDT`;
+            } else {
+                conversionRateText.textContent = "1 BDT = " + (1 / conversionRate).toFixed(6) + " USD";
+                convertedAmountText.textContent = `Converted Amount: ${(amount / conversionRate).toFixed(2)} USD`;
+            }
+        }
+
+        currencySelect.addEventListener("change", updateConversion);
+        amountInput.addEventListener("input", updateConversion);
+
+        // Form submission
+        document.getElementById("paymentForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const currency = document.getElementById("currency").value;
+            const amount = document.getElementById("amount").value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            if (!amount) {
+                alert("Please enter the payment amount.");
+                return;
+            }
+
+            // Save payment details to localStorage
+            const paymentDetails = {
+                currency,
+                amount,
+                method: paymentMethod,
+            };
+            localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails));
+
+            // Redirect to the respective payment page
+            if (paymentMethod === "card") {
+                window.location.href = "card-payment.html";
+            } else if (paymentMethod === "bkash") {
+                window.location.href = "bkash-payment.html";
+            }
+        });
+    </script>
+</body>
+</html>

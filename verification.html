@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verification</h1>
+        <p>Enter the verification code sent to you:</p>
+        <input type="text" id="verificationCode" placeholder="Enter verification code" required>
+        <button onclick="verifyCode()">Verify</button>
+    </div>
+
+    <script>
+        function verifyCode() {
+            const code = document.getElementById("verificationCode").value;
+
+            // Simulate verification
+            if (code === "123456") { // Hardcoded verification code for demo
+                alert("Verification successful! Payment completed.");
+                window.location.href = "receipt.html"; // Redirect to receipt page
+            } else {
+                alert("Invalid verification code. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

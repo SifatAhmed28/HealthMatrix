@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Verification</h1>
+        <p>Please verify your payment details.</p>
+        <button onclick="verifyPayment()">Verify Payment</button>
+    </div>
+
+    <script>
+        // Function to verify payment
+        function verifyPayment() {
+            const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails"));
+
+            if (paymentDetails) {
+                // Simulate payment verification
+                alert("Payment verified successfully! Redirecting to home page...");
+                localStorage.removeItem("paymentDetails"); // Clear payment details
+                window.location.href = "index.html"; // Redirect to home page
+            } else {
+                alert("No payment details found. Please go back and try again.");
+            }
+        }
+    </script>
+</body>
+</html>

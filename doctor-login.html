@@ -3,202 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Login - Health Matrix</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Doctor Login</title>
     <style>
-        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-family: Arial, sans-serif;
             padding: 20px;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #28a745; /* Green color */
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-
-        h1::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #28a745;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Form Styles */
-        form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+        .container {
+            max-width: 600px;
             margin: 0 auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        h1 {
+            color: #007bff;
         }
-
         label {
             display: block;
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
-
-        input[type="email"],
-        input[type="password"] {
+        input {
             width: 100%;
             padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
         }
-
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            border-color: #28a745;
-            outline: none;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
             color: #fff;
-            font-size: 1rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
-
-        button[type="submit"]:hover {
-            background-color: #218838;
-        }
-
-        /* Forgot Password Link */
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #28a745;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #218838;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            form {
-                padding: 20px;
-            }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html"><img src="logo.png" alt="Health Matrix Logo"></a>
-                </div>
-                <div class="header-actions">
-                    <a href="login.html" class="btn-login">Patient Login</a>
-                </div>
-            </div>
-        </div>
-    </header>
+    <div class="container">
+        <h1>Doctor Login</h1>
+        <form id="doctorLoginForm">
+            <label for="doctor-email">Email:</label>
+            <input type="email" id="doctor-email" name="doctor-email" required>
 
-    <main>
-        <div class="container">
-            <h1>Doctor Login</h1>
-            <form action="doctor-dashboard.html" method="POST">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="doctor-password">Password:</label>
+            <input type="password" id="doctor-password" name="doctor-password" required>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
-                <button type="submit">Login</button>
-            </form>
-            <a href="doctor-forgot-password.html">Forgot Password?</a>
-        </div>
-    </main>
+    <script>
+        document.getElementById("doctorLoginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const email = document.getElementById("doctor-email").value;
+            const password = document.getElementById("doctor-password").value;
 
-    <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-columns">
-                    <!-- About Us -->
-                    <div class="footer-section">
-                        <h3>About Us</h3>
-                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
-                    </div>
-                    <!-- Quick Links -->
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="health-plans.html">Health Plans</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="terms-of-services.html">Terms of Services</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
-                            <li><a href="for-doctors.html">For Doctors</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <!-- Contact Us -->
-                    <div class="footer-section">
-                        <h3>Contact Us</h3>
-                        <p>📞 09677865599</p>
-                        <p>📧 support@healthmatrix.com.bd</p>
-                        <!-- Social Media Icons -->
-                        <div class="footer-social">
-                            <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
-                            <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+            if (email === "doctor@example.com" && password === "password123") {
+                alert("Login successful!");
+                window.location.href = "index.html"; // Redirect to Home Page
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+    </script>
 </body>
 </html>

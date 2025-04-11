@@ -1,0 +1,178 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Health Matrix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="D:\Health Matrix\logo.png" alt="Health Matrix Logo" class="h-16">
+                    </a>
+                </div>
+                <div class="header-contact">
+                    <span>Call Us: +880 1234 567890</span>
+                </div>
+                <div class="header-actions">
+                    <a href="login.html" class="btn-login">Login</a>
+                    <a href="doctor-login.html" class="btn-login">Doctor Login</a>
+                    <a href="signup.html" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="for-doctors.html">Doctors</a></li>
+                    <li><a href="hospitals.html">Hospitals</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">User Dashboard</h1>
+            <p class="text-gray-600">Manage your appointments and prescriptions</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Appointments Section -->
+            <div class="dashboard-card">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-calendar-check text-4xl text-blue-500 mr-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800">Appointments</h3>
+                </div>
+                <ul id="appointment-list" class="dashboard-list">
+                    <!-- Appointments will be dynamically added here -->
+                </ul>
+                <button class="clear-button hover:scale-105" onclick="clearAppointments()">
+                    <i class="fas fa-trash-alt mr-2"></i>Clear All Appointments
+                </button>
+            </div>
+
+            <!-- Prescriptions Section -->
+            <div class="dashboard-card">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-prescription text-4xl text-blue-500 mr-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800">Prescriptions</h3>
+                </div>
+                <ul id="prescription-list" class="dashboard-list">
+                    <!-- Prescriptions will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Health Matrix is the number 1 healthcare service provider in Bangladesh, based on one million downloads and ratings on the Play Store.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="health-plans.html">Health Plans</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="terms-of-services.html">Terms of Services</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="home-diagnostics.html">Home Diagnostics</a></li>
+                            <li><a href="for-doctors.html">For Doctors</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>📞 09677865599</p>
+                        <p>📧 support@healthmatrix.com.bd</p>
+                        <div class="footer-social">
+                            <a href="https://facebook.com/healthmatrix" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://instagram.com/healthmatrix" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2025 Health Matrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load appointments from localStorage
+        function loadAppointments() {
+            try {
+                const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+                const appointmentList = document.getElementById("appointment-list");
+
+                if (appointments.length === 0) {
+                    appointmentList.innerHTML = '<li class="text-gray-500">No appointments booked yet.</li>';
+                } else {
+                    appointmentList.innerHTML = appointments.map(appointment => `
+                        <li class="bg-white hover:bg-gray-50 transition-colors">
+                            <div class="font-semibold text-gray-800">${appointment.doctor}</div>
+                            <div class="text-gray-600">${appointment.date} at ${appointment.time}</div>
+                            ${appointment.notes ? `<div class="text-sm text-gray-500 mt-2">Notes: ${appointment.notes}</div>` : ''}
+                        </li>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+                document.getElementById("appointment-list").innerHTML = 
+                    '<li class="text-red-500">Error loading appointments. Please try again.</li>';
+            }
+        }
+
+        // Function to clear appointments
+        function clearAppointments() {
+            const confirmClear = confirm("Are you sure you want to clear all appointments?");
+            if (confirmClear) {
+                try {
+                    localStorage.removeItem("appointments");
+                    alert("Appointments cleared successfully!");
+                    loadAppointments(); // Reload the appointments list
+                } catch (error) {
+                    console.error('Error clearing appointments:', error);
+                    alert("Error clearing appointments. Please try again.");
+                }
+            }
+        }
+
+        // Initialize prescriptions list
+        function initializePrescriptions() {
+            const prescriptionList = document.getElementById("prescription-list");
+            prescriptionList.innerHTML = '<li class="text-gray-500">No prescriptions available.</li>';
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAppointments();
+            initializePrescriptions();
+        });
+    </script>
+</body>
+</html>

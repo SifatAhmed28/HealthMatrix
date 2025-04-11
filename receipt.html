@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .receipt {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Receipt</h1>
+        <div class="receipt" id="receipt">
+            <!-- Receipt details will be dynamically added here -->
+        </div>
+        <button onclick="goHome()">Return to Home</button>
+    </div>
+
+    <script>
+        // Retrieve payment details from localStorage
+        const paymentDetails = JSON.parse(localStorage.getItem("paymentDetails"));
+        const receiptDiv = document.getElementById("receipt");
+
+        if (paymentDetails) {
+            // Display receipt
+            receiptDiv.innerHTML = `
+                <p><strong>Payment Method:</strong> ${paymentDetails.method}</p>
+                <p><strong>Amount:</strong> ${paymentDetails.amount} ${paymentDetails.currency}</p>
+                <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+            `;
+        } else {
+            receiptDiv.innerHTML = "<p>No payment details found.</p>";
+        }
+
+        // Function to redirect to home page
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

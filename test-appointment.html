@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Book Appointment Test</title></head>
+<body>
+    <form action="appointments/create.php" method="POST">
+        <input type="number" name="patient_id" value="1" required><br>
+        <input type="number" name="doctor_id" value="2" required><br>
+        <input type="datetime-local" name="appointment_date" required><br>
+        <textarea name="notes" placeholder="Notes..."></textarea><br>
+        <button type="submit">Book Appointment</button>
+    </form>
+</body>
+</html>
